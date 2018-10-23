@@ -14,6 +14,22 @@ public class Main {
         Random rn = new Random();
         ArrayList< Grocery1>grocerylist = new ArrayList<>();
 
+        ArrayList<Double> Taxable = new ArrayList<>();
+
+        Taxable.add(6.00);
+        Taxable.add(5.30);
+        Taxable.add(5.75);
+        Taxable.add(5.00);
+
+        Random rnx = new Random();
+        int index = rnx.nextInt(Taxable.size()-1);
+        double Taxable1 = Taxable.get(index);
+
+       // double salesTaxe = Taxable1.get(Taxable);
+        //double Taxrate2 = Taxable.get(index);
+//        SalesTax += cost*Taxrate;
+
+
         do {
 
             System.out.println("Enter the Item Name");
@@ -50,30 +66,27 @@ public class Main {
         for (Grocery1 newlist: grocerylist){
             System.out.println(newlist.getName()+"\t\t\t"+newlist.getPrice()+"\t\t\t"+newlist.getQuantity()+"\t\t\t"+newlist.getCost()+"\t\t\t"+ newlist.isTaxable());
             subtotalAmount += newlist.getCost();
-             SalesTax += newlist.getCost()*Taxrate;
-            GrandTotal += newlist.getCost();
+            // SalesTax += newlist.getCost() * Taxable
+
+            if (newlist.isTaxable() ==true){
+                SalesTax = newlist.getCost() * Taxable1/100 + SalesTax;
+
+
+            }
+
         }
 
 
-        ArrayList<Double> Taxable = new ArrayList<>();
-
-        Taxable.add(6.00);
-        Taxable.add(5.30);
-        Taxable.add(5.75);
-        Taxable.add(5.00);
-
-        Random rnx = new Random();
-        int index = rnx.nextInt(Taxable.size()-1);
-        double Taxable1 = Taxable.get(index);
-        double Taxrate2 = Taxable.get(index);
-        SalesTax += cost*Taxrate;
 
         //System.out.println("\n" + Taxable+ "");
 
         System.out.println("Total purchase Amount=" +subtotalAmount);
-        System.out.println("tax rate = " + Taxable.get(index));
-        System.out.println("sales tax =" + Taxrate*cost.(index));
-       System.out.println("Grand Total=" +grocerylist.size());
+        System.out.println("tax rate = " + Taxable1);
+        System.out.println(SalesTax);
+      // System.out.println("sales tax =" + Taxrate*cost);
+       System.out.println("Grand Total=" + (subtotalAmount+SalesTax));
+
+
 
 
 
